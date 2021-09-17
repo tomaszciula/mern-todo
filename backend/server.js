@@ -54,6 +54,7 @@ todoRoutes.route("/update/:id").post(function (req, res) {
 });
 todoRoutes.route("/add").post(function (req, res) {
   let todo = new Todo(req.body);
+  console.log(todo);
   todo
     .save()
     .then((todo) => {
