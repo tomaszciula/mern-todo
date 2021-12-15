@@ -64,6 +64,11 @@ todoRoutes.route("/add").post(function (req, res) {
       res.status(400).send("adding new todo failed");
     });
 });
+todoRoutes.route("/:id").delete(function (req, res) {
+  Todo.findByIdAndRemove(req.params.id, req.body).then((data) =>
+    res.json({ message: "todo deleted successfully", data })
+  ).catch((err) => res.status(404).json({message: "record not found", error: err.message}))
+});
 app.use("/todos", todoRoutes);
 
 app.listen(PORT, function () {
